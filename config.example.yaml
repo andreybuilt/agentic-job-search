@@ -1,0 +1,92 @@
+# config.example.yaml -- the complete config schema, filled with a FICTIONAL persona.
+#
+# Copy it and edit the copy:
+#     cp config.example.yaml config.yaml
+# config.yaml is in .gitignore. Never commit it.
+#
+# Tools find your config in this order (first match wins):
+#   1. --config <path>
+#   2. $JOBSTACK_CONFIG
+#   3. ./config.yaml in the current directory
+#   4. config.yaml at the repo root
+# There is no fallback to this example file. With no config.yaml, tools stop and say so.
+#
+# Every key below is read by at least one tool, and every key a tool reads is here
+# (tests/test_config.py checks both directions). Relative paths are resolved from the
+# repo root.
+#
+# Syntax: a small YAML subset. `key: value`, nesting by spaces, quoted or bare scalars,
+# and one-line lists like ["a", "b"] or []. Block lists ("- item") are rejected.
+
+candidate:
+  # Used in resume and cover-letter headers (tools/build/TEMPLATE_build.py, packetlib.py).
+  # Every contact field is required when you build a packet.
+  name: "Jordan Rivera"
+  email: "jordan.rivera@example.com"
+  phone: "+1-555-010-0100"
+  city: "Springfield, ST"
+  linkedin: "linkedin.com/in/jordan-rivera-example"
+  website: "example.com"
+  # IANA zone name used when listing or booking interview slots (tools/build/book_link.py).
+  timezone: "America/Chicago"
+
+paths:
+  # Where your private working files live. Keep it out of git (data/ is in .gitignore).
+  data_root: "./data"
+  # Your facts-of-record file. Copy templates/FACTS.example.md here. Checked by tools/doctor.py.
+  facts_md: "./FACTS.md"
+  # Tracker file names, relative to data_root. Read by collision_check.py, presubmit.sh,
+  # record_send.py, build_submissions.py and the sourcing readers.
+  queue_md: "QUEUE.md"
+  submissions_tsv: "SUBMISSIONS.tsv"
+  build_reqs_tsv: "BUILD_reqs.tsv"
+  interview_tracker_md: "INTERVIEW_TRACKER.md"
+  mailbox_ledger_tsv: "LEDGER_mailbox.tsv"
+  candidates_ledger_tsv: "LEDGER_candidates.tsv"
+  direct_ledger_tsv: "LEDGER_direct.tsv"
+  overrides_ledger_tsv: "LEDGER_overrides.tsv"
+  outcomes_raw_tsv: "OUTCOMES_raw.tsv"
+
+render:
+  # Leave empty to auto-detect a local Chrome or Chromium. Playwright's bundled Chromium
+  # is the fallback. Rendering never uses a remote service.
+  chrome_path: ""
+  # The one font family your templates use and the render gate requires in every PDF.
+  # Carlito is free (Google Fonts, or the crosextra package). See README "Prerequisites".
+  font_family: "Carlito"
+
+gates:
+  # One list of names that must never appear in an outbound document. Plain text, one
+  # name per line, '#' comments allowed. Read by verify_readback.py,
+  # forbidden_names_gate.py, render-resume_v3.sh and packetlib.py.
+  banned_names_file: "./tools/examples/banned_names.example.txt"
+  # Banned phrases and false-claim patterns for verify_readback.py.
+  banned_claims_file: "./tools/examples/banned_claims.example.yaml"
+  # Claim rules (NEVER / NEGATED / CONTEXT / CONTROLS) for claim_audit.py.
+  claim_rules_file: "./tools/examples/claim_audit_rules.example.yaml"
+  # Banned patterns and protected phrases for b9_check.py.
+  b9_rules_file: "./tools/examples/b9_check_rules.example.yaml"
+
+policy:
+  # Placeholder tokens that must never survive into a built document head (packetlib.py).
+  stale_head_tokens_csv: "COMPANY"
+  # Comma-separated terms the packet guard refuses to let appear at all (packetlib.py).
+  # Empty means none.
+  sensitive_terms_csv: ""
+
+sourcing:
+  # Title screen for sweep.py, li_post.py and filter_discover.py. These are EXAMPLE
+  # values for field and solutions roles. Replace them with your own target titles.
+  title_include_regex: "customer success|solutions? (engineer|architect)|sales engineer|technical account manag|customer engineer"
+  title_exclude_regex: "intern\b|new grad|account executive|recruit|marketing|\bVP\b|vice president|director"
+  # Your home metro, as a regex, and your state's two-letter code. Fictional examples.
+  target_metro_regex: "springfield|shelbyville"
+  target_state_abbr: "ST"
+  # li_post.py drops a listing whose stated maximum pay is under this number.
+  min_comp_band: 130000
+  # harvest.py search phrases for the public LinkedIn guest job search, comma separated.
+  linkedin_queries_csv: "customer success manager,solutions engineer,technical account manager"
+  # Extra company-name aliases (normalized name: canonical name) for de-duplication in
+  # fetch_jd.py and li_post.py. Keys are lowercase letters and digits only.
+  company_aliases:
+    globexindustries: "globex"

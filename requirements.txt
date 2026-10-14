@@ -1,0 +1,7 @@
+# agentic-job-search 1.0.0 -- mirrors pyproject.toml.
+# Required: nothing. Every tool uses the Python standard library only (Python >= 3.10).
+#
+# Optional ("render" extra): Playwright, for rendering without a local Chrome and for
+# tools/build/book_link.py. Uncomment, pip install -r requirements.txt, then run
+# `playwright install chromium`.
+# playwright>=1.40

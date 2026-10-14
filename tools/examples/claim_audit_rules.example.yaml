@@ -1,0 +1,53 @@
+# Example rule file for claim_audit.py.
+#
+# This is a small, fixed shape (NEVER / NEGATED / CONTEXT / CONTROLS sections, each a list of
+# "- key: "value"" entries), parsed by a tiny dedicated reader in claim_audit.py (raw-text
+# extraction between the quotes, NOT YAML/JSON string-unescaping) -- not a general YAML
+# document. Because of that, write a regex escape as a SINGLE backslash (\b, \s, \.), not a
+# doubled one -- the reader does not interpret backslash escapes itself; whatever is between
+# the quotes becomes the regex pattern verbatim. Replace this whole file with your own
+# FACTS-derived rules; every pattern below is an invented, obviously fictional example.
+#
+# NEVER: a claim that is FALSE (or unsourced) no matter what sentence it appears in. Any hit
+# is a problem -- this is the strongest and simplest rule.
+NEVER:
+  - label: "example unsourced headline metric"
+    pattern: "\b99\.999%\s*uptime\b"
+  - label: "example false claim (replace with your own FACTS-contradicted claim)"
+    pattern: "\bnever (?:shipped|wrote) production code\b"
+
+# NEGATED: a term that is allowed ONLY inside a sentence that negates it (e.g. "I have not
+# used X" is fine, "I use X daily" is not, if X is something your FACTS say you do not do).
+NEGATED:
+  - label: "Kubernetes"
+    pattern: "\bKubernetes\b"
+  - label: "example tool you do not actually use"
+    pattern: "\bExampleToolXYZ\b"
+
+# CONTEXT: a term that needs QUALIFYING context to be a true claim (ok), and is a problem if
+# claimed as sole OWNERSHIP without a negation nearby. This is a generic "mentioned alongside
+# a team vs. claimed as the sole administrator/owner" distinction -- replace ExampleIdP with
+# your own term and your own ok/own qualifiers.
+CONTEXT:
+  - label: "ExampleIdP"
+    term: "\bExampleIdP\b"
+    ok: "\b(deploy\w*|integrat\w*|alongside|client|customer|application side|troubleshoot\w*|rollout|SSO)\b"
+    own: "\b(administer\w*|admin(istrator)?|owned|own(ed)? (the|our|their)|ran (the|our)|managed (the|our|their)|IdP owner)\b"
+
+# CONTROLS: sentences with a known right answer (expect: true = should be flagged as a
+# problem, false = should NOT be flagged), run through the SAME check() function before any
+# real text is audited. If a control fails, the audit refuses to report rather than print a
+# confident result from a broken matcher.
+CONTROLS:
+  - text: "I administered ExampleIdP for the whole company."
+    expect: "true"
+  - text: "I worked alongside the identity team on ExampleIdP integrations; my part was the application side."
+    expect: "false"
+  - text: "I deploy Kubernetes daily."
+    expect: "true"
+  - text: "Kubernetes is where I would build depth in this role, not something I have shipped."
+    expect: "false"
+  - text: "We hit 99.999% uptime last quarter."
+    expect: "true"
+  - text: "Our uptime target is high but I would not claim five nines."
+    expect: "false"

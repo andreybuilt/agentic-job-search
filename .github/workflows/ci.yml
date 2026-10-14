@@ -1,0 +1,52 @@
+name: tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10", "3.11", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install poppler
+        run: sudo apt-get update && sudo apt-get install -y poppler-utils
+
+      - name: Unit tests (no config, no env)
+        run: bash tests/run-all.sh
+
+      - name: Offline demo
+        run: bash scripts/demo.sh
+
+      - name: --help sweep over every tool
+        run: python tests/test_cli_help.py
+
+      - name: Browser boundary (all browser code in browser_actions.py) and the booking gate
+        run: python tests/test_agent_contract.py && python tests/test_book_link.py
+
+      - name: Leak gate (only when the LEAK_DENYLIST_CONTENT secret is set)
+        env:
+          LEAK_DENYLIST_CONTENT: ${{ secrets.LEAK_DENYLIST_CONTENT }}
+        run: |
+          if [ -z "$LEAK_DENYLIST_CONTENT" ]; then
+            echo "SKIP leak gate (secret LEAK_DENYLIST_CONTENT is not set)"
+            exit 0
+          fi
+          deny="$RUNNER_TEMP/denylist.txt"
+          printf '%s\n' "$LEAK_DENYLIST_CONTENT" > "$deny"
+          LEAK_DENYLIST="$deny" bash tests/run-all.sh
+          rm -f "$deny"

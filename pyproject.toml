@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "agentic-job-search"
+version = "1.0.0"
+description = "A job-search toolkit for Claude Code and Codex, with gates that catch fabricated claims and leaked names."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "andreybuilt" }]
+dependencies = []
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+]
+
+[project.optional-dependencies]
+# Only for rendering without a local Chrome (tools/build/render_pdf.py) and for
+# tools/build/book_link.py. Run `playwright install chromium` after installing.
+render = ["playwright>=1.40"]
+
+[project.urls]
+Homepage = "https://github.com/andreybuilt/agentic-job-search"
+Changelog = "https://github.com/andreybuilt/agentic-job-search/blob/main/CHANGELOG.md"
+
+[tool.setuptools]
+# The tools are scripts run in place from a clone, not an importable package.
+packages = []

@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jordan Rivera Resume</title>
+<style>
+  :root {
+    --text: #1a1a1a;
+    --muted: #555555;
+    --rule: #cccccc;
+  }
+  body {
+    font-family: "Carlito", sans-serif;  /* must match render.font_family in config.yaml */
+    color: var(--text);
+    max-width: 7.5in;
+    margin: 0.5in auto;
+    line-height: 1.4;
+    font-size: 11pt;
+  }
+  header {
+    text-align: center;
+    margin-bottom: 0.3in;
+  }
+  header h1 {
+    font-size: 20pt;
+    margin: 0 0 4px 0;
+  }
+  header .contact {
+    font-size: 10pt;
+    color: var(--muted);
+  }
+  section {
+    margin-bottom: 0.25in;
+  }
+  section h2 {
+    font-size: 12pt;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 2px;
+    margin-bottom: 8px;
+  }
+  .entry {
+    margin-bottom: 10px;
+  }
+  .entry-head {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+  }
+  .entry-sub {
+    color: var(--muted);
+    font-style: italic;
+    font-size: 10pt;
+  }
+  ul {
+    margin: 4px 0 0 0;
+    padding-left: 18px;
+  }
+  footer {
+    margin-top: 0.2in;
+    font-size: 9pt;
+    color: var(--muted);
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Jordan Rivera</h1>
+  <div class="contact">
+    Springfield, ST &nbsp;·&nbsp; jordan.rivera@example.com &nbsp;·&nbsp; +1-555-010-0100
+    &nbsp;·&nbsp; linkedin.com/in/jordan-rivera-example &nbsp;·&nbsp; example.com
+  </div>
+</header>
+
+<section>
+  <h2>Summary</h2>
+  <p>[SUMMARY_PARAGRAPH -- one to two sentences tailored to [TARGET_COMPANY] / [ROLE_TITLE], pulled only from facts in FACTS.md]</p>
+</section>
+
+<section>
+  <h2>Experience</h2>
+
+  <div class="entry">
+    <div class="entry-head">
+      <span>[EMPLOYER_1]</span>
+      <span>[START_DATE_1] – [END_DATE_1]</span>
+    </div>
+    <div class="entry-sub">[TITLE_1] &middot; [LOCATION_1]</div>
+    <ul>
+      <li>[BULLET_1_1]</li>
+      <li>[BULLET_1_2]</li>
+      <li>[BULLET_1_3]</li>
+    </ul>
+  </div>
+
+  <div class="entry">
+    <div class="entry-head">
+      <span>[EMPLOYER_2]</span>
+      <span>[START_DATE_2] – [END_DATE_2]</span>
+    </div>
+    <div class="entry-sub">[TITLE_2] &middot; [LOCATION_2]</div>
+    <ul>
+      <li>[BULLET_2_1]</li>
+      <li>[BULLET_2_2]</li>
+    </ul>
+  </div>
+
+</section>
+
+<section>
+  <h2>Education</h2>
+  <div class="entry">
+    <div class="entry-head">
+      <span>[SCHOOL_NAME]</span>
+      <span>[GRAD_YEAR]</span>
+    </div>
+    <div class="entry-sub">[DEGREE_AND_FIELD]</div>
+  </div>
+</section>
+
+<section>
+  <h2>Skills</h2>
+  <p>[SKILLS_LIST -- comma separated, pulled only from FACTS.md]</p>
+</section>
+
+<!-- The render gate (tools/build/render-resume_v3.sh) requires exactly this span, naming
+     the company you render for. Replace "Acme Corp" (a fictional target) per application. -->
+<footer>Prepared for <span class="target">Acme Corp</span></footer>
+
+</body>
+</html>

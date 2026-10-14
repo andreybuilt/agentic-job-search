@@ -1,0 +1,18 @@
+# Example banned-phrase list for verify_readback.py's BANNED_PHRASES check.
+# Shape: a list of {pattern, why} entries, each pattern a Python regex (matched
+# case-insensitively against the plain text of a cover letter / answers doc).
+#
+# These two example entries are deliberately generic:
+#   1. a "false claim" example -- in real use, replace this with a regex that matches a
+#      specific claim your own FACTS-of-record say is FALSE for you (e.g. a skill/role claim
+#      your real resume contradicts). The example below is a placeholder, not a real claim.
+#   2. a genuinely generic AI-writing-slop phrase list, safe to keep as shipped.
+#
+# This is a small, fixed shape -- not a general YAML document -- parsed by a tiny dedicated
+# reader in verify_readback.py (see load_banned_phrases()), not by tools/common/config.py: it
+# extracts raw text between the quotes with no backslash-unescaping, so write a regex escape
+# as a SINGLE backslash (\b, \s) here, not a doubled one.
+- pattern: "never (?:carried|had) a quota|not carried a quota|lacks? quota|no quota[- ]bearing"
+  why: "EXAMPLE false-claim check: replace with a real claim your FACTS say is false for you"
+- pattern: "\bexcited to\b|\bpassionate about\b|\bleverage\b"
+  why: "slop phrase"

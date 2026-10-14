@@ -1,0 +1,12 @@
+Dear Hiring Manager,
+
+I am excited to apply for the Senior Platform Engineer role at Acme Corp. In my current role I
+led the migration of our deployment pipeline to a fully automated release process, cutting
+deploy time from forty minutes to under five. I believe this experience maps directly onto the
+challenges your platform team is facing as you scale.
+
+I would welcome the chance to discuss how my background in CI/CD and release engineering could
+help Acme Corp move faster without sacrificing reliability.
+
+Sincerely,
+Jordan Rivera

@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jordan Rivera Cover Letter</title>
+<style>
+  :root {
+    --text: #1a1a1a;
+    --muted: #555555;
+  }
+  body {
+    font-family: "Carlito", sans-serif;  /* must match render.font_family in config.yaml */
+    color: var(--text);
+    max-width: 7in;
+    margin: 0.75in auto;
+    line-height: 1.5;
+    font-size: 11pt;
+  }
+  .sender {
+    margin-bottom: 0.3in;
+  }
+  .sender .name {
+    font-weight: bold;
+    font-size: 13pt;
+  }
+  .sender .contact {
+    color: var(--muted);
+    font-size: 10pt;
+  }
+  .date {
+    margin-bottom: 0.25in;
+    color: var(--muted);
+    font-size: 10pt;
+  }
+  .recipient {
+    margin-bottom: 0.25in;
+  }
+  p {
+    margin: 0 0 1em 0;
+  }
+  .closing {
+    margin-top: 0.3in;
+  }
+</style>
+</head>
+<body>
+
+<div class="sender">
+  <div class="name">Jordan Rivera</div>
+  <div class="contact">
+    Springfield, ST &nbsp;·&nbsp; jordan.rivera@example.com &nbsp;·&nbsp; +1-555-010-0100
+    &nbsp;·&nbsp; linkedin.com/in/jordan-rivera-example &nbsp;·&nbsp; example.com
+  </div>
+</div>
+
+<div class="date">[LETTER_DATE]</div>
+
+<div class="recipient">
+  [HIRING_MANAGER_NAME_OR_TEAM]<br>
+  [TARGET_COMPANY]
+</div>
+
+<!-- The render gate reads this salutation off the rendered PDF and refuses a letter that
+     does not name the company you render for. "Acme Corp" is a fictional target; replace it. -->
+<p>Dear Acme Corp team,</p>
+
+<p>[PARAGRAPH_1 -- why this role at [TARGET_COMPANY], tailored and specific, no boilerplate]</p>
+
+<p>[PARAGRAPH_2 -- one or two concrete, factual accomplishments relevant to [ROLE_TITLE], pulled only from FACTS.md, never invented or rounded]</p>
+
+<p>[PARAGRAPH_3 -- closing: why now, availability, call to action]</p>
+
+<div class="closing">
+  <p>Sincerely,<br>Jordan Rivera</p>
+</div>
+
+</body>
+</html>

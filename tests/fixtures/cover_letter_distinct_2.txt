@@ -1,0 +1,12 @@
+Hi Sam,
+
+A former colleague pointed me at Initech's internal-tools opening and I nearly skipped it
+because the title undersells what the posting actually describes. Building an admin console
+that a hundred support agents rely on every day is a product problem as much as an engineering
+one, and that's the part I enjoy most about this kind of work.
+
+Happy to walk through the admin console I shipped early in my career and how the lessons from
+that would transfer here.
+
+Best,
+Jordan Rivera

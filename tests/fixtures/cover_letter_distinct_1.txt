@@ -1,0 +1,12 @@
+Dear Pat Lee,
+
+Umbrella Analytics' work on real-time anomaly detection at the scale described in your posting
+is exactly the kind of problem I want to spend the next few years on. Earlier this year I
+rebuilt a billing-events pipeline to process twelve times its original throughput, and that
+project taught me how much the data model matters before you reach for more compute.
+
+I've attached a resume, but I'd rather talk through how your team's current bottlenecks compare
+to the ones I just solved.
+
+Sincerely,
+Jordan Rivera

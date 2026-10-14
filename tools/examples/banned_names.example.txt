@@ -1,0 +1,16 @@
+# Example banned-names list. The one names list every name gate reads
+# (config key gates.banned_names_file).
+#
+# These are FICTIONAL placeholders. Replace this file, or point gates.banned_names_file at
+# your own copy, with the names that must never reach an outbound document: an employer
+# under NDA, a confidential customer, an unannounced project codename.
+#
+# Format: one name per line, '#' starts a comment line. Matching is case-insensitive.
+# verify_readback.py matches a name as a substring of the letter text. The rendered-PDF
+# gate (forbidden_names_gate.py) matches it as a whole word and tolerates a soft hyphen
+# or line break between letters.
+#
+# An empty list is a refusal by design: a gate with no list checks nothing.
+umbrella-analytics-internal-codename
+globex-project-nightingale
+initech-confidential-client-x

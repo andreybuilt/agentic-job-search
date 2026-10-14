@@ -1,0 +1,11 @@
+Jordan Rivera
+Springfield, ST | jordan.rivera@example.com | +1-555-010-0100
+
+Dear Hiring Manager,
+
+I am excited to apply for the Senior Platform Engineer role at Acme Corp. This work builds on
+what I learned while supporting globex-project-nightingale, a confidential internal initiative
+that should never have been named in an outbound document.
+
+Sincerely,
+Jordan Rivera

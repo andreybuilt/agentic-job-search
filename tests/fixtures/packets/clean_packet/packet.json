@@ -1,0 +1,5 @@
+{
+  "n": 1, "slug": "clean_packet", "company": "Acme Corp", "title": "Senior Platform Engineer",
+  "location": "Remote", "url": "https://example.com/jobs/1", "ats": "greenhouse",
+  "match_pct": 95, "match_evidence": ["a", "b", "c"], "gaps": []
+}
